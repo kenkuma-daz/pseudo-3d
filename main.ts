@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const wall_25d = SpriteKind.create()
+    export const map = SpriteKind.create()
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (プレイヤー向き == "北") {
@@ -14,6 +15,10 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     壁クリア()
     画面描画()
 })
+function ミニマップ初期化 () {
+    ミニマップ画像 = image.create(25, 25)
+    ミニマップ画像.fill(2)
+}
 function 位置計算 () {
     let m = {
     L0: { x: 0, y: 0 },
@@ -105,6 +110,11 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     壁クリア()
     画面描画()
 })
+function ミニマップ描画 () {
+    ミニマップ画像.drawRect(0, 0, 25, 25, 9)
+    ミニマップ = sprites.create(ミニマップ画像, SpriteKind.map)
+    ミニマップ.setPosition(135, 20)
+}
 function 壁初期化 () {
     左壁2 = sprites.create(assets.image`emptyWall`, SpriteKind.wall_25d)
     左壁1 = sprites.create(assets.image`emptyWall`, SpriteKind.wall_25d)
@@ -114,6 +124,9 @@ function 壁初期化 () {
     右壁2 = sprites.create(assets.image`emptyWall`, SpriteKind.wall_25d)
     右壁1 = sprites.create(assets.image`emptyWall`, SpriteKind.wall_25d)
     右壁0 = sprites.create(assets.image`emptyWall`, SpriteKind.wall_25d)
+}
+function ミニマップクリア () {
+    ミニマップ.destroy()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (プレイヤー向き == "北") {
@@ -155,6 +168,7 @@ function 画面描画 () {
         中壁1 = sprites.create(assets.image`centerWall1`, SpriteKind.wall_25d)
     }
 }
+let ミニマップ: Sprite = null
 let 右壁0: Sprite = null
 let 右壁1: Sprite = null
 let 右壁2: Sprite = null
@@ -163,8 +177,10 @@ let 中壁2: Sprite = null
 let 左壁0: Sprite = null
 let 左壁1: Sprite = null
 let 左壁2: Sprite = null
+let ミニマップ画像: Image = null
 let マップデータ: Image = null
 let プレイヤー向き = ""
+プレイヤー向き = "南"
 let n = {
     L0: { x: 0, y: 0 },
     L1: { x: 0, y: 0 },
@@ -175,9 +191,11 @@ let n = {
     R1: { x: 0, y: 0 },
     R2: { x: 0, y: 0 },
 };
-壁初期化()
 マップデータ = assets.image`マップ１`
 let プレイヤーX座標 = 1
 let プレイヤーY座標 = 1
 プレイヤー向き = "南"
+壁初期化()
 画面描画()
+ミニマップ初期化()
+ミニマップ描画()
