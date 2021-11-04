@@ -125,7 +125,8 @@ function ミニマップ描画 () {
             }
         }
     }
-    ミニマップ画像.fillRect(10, 10, 5, 5, 2)
+    ミニマップ画像.fillRect(11, 11, 3, 3, 2)
+    ミニマップ画像.drawRect(0, 0, 25, 25, 9)
     ミニマップ = sprites.create(ミニマップ画像, SpriteKind.map)
     ミニマップ.setPosition(135, 20)
 }
@@ -198,6 +199,7 @@ let プレイヤーY座標 = 0
 let プレイヤーX座標 = 0
 let マップデータ: Image = null
 let プレイヤー向き = ""
+scene.setBackgroundImage(assets.image`background1`)
 プレイヤー向き = "南"
 let n = {
     L0: { x: 0, y: 0 },
