@@ -14,6 +14,8 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     }
     壁クリア()
     画面描画()
+    ミニマップクリア()
+    ミニマップ描画()
 })
 function ミニマップ初期化 () {
     ミニマップ画像 = image.create(25, 25)
@@ -96,6 +98,8 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     }
     壁クリア()
     画面描画()
+    ミニマップクリア()
+    ミニマップ描画()
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (プレイヤー向き == "北") {
@@ -109,9 +113,19 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     }
     壁クリア()
     画面描画()
+    ミニマップクリア()
+    ミニマップ描画()
 })
 function ミニマップ描画 () {
-    ミニマップ画像.drawRect(0, 0, 25, 25, 9)
+    ミニマップ画像.fillRect(0, 0, 25, 25, 8)
+    for (let カウンターY = 0; カウンターY <= 4; カウンターY++) {
+        for (let カウンターX = 0; カウンターX <= 4; カウンターX++) {
+            if (マップデータ.getPixel(プレイヤーX座標 + (カウンターX - 2), プレイヤーY座標 + (カウンターY - 2)) == 14) {
+                ミニマップ画像.fillRect(カウンターX * 5, カウンターY * 5, 5, 5, 14)
+            }
+        }
+    }
+    ミニマップ画像.fillRect(10, 10, 5, 5, 2)
     ミニマップ = sprites.create(ミニマップ画像, SpriteKind.map)
     ミニマップ.setPosition(135, 20)
 }
@@ -140,6 +154,8 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     }
     壁クリア()
     画面描画()
+    ミニマップクリア()
+    ミニマップ描画()
 })
 function 画面描画 () {
     n = 位置計算()
@@ -178,6 +194,8 @@ let 左壁0: Sprite = null
 let 左壁1: Sprite = null
 let 左壁2: Sprite = null
 let ミニマップ画像: Image = null
+let プレイヤーY座標 = 0
+let プレイヤーX座標 = 0
 let マップデータ: Image = null
 let プレイヤー向き = ""
 プレイヤー向き = "南"
@@ -192,8 +210,8 @@ let n = {
     R2: { x: 0, y: 0 },
 };
 マップデータ = assets.image`マップ１`
-let プレイヤーX座標 = 1
-let プレイヤーY座標 = 1
+プレイヤーX座標 = 1
+プレイヤーY座標 = 1
 プレイヤー向き = "南"
 壁初期化()
 画面描画()
