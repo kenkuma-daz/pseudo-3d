@@ -134,7 +134,17 @@ function ミニマップ描画 () {
             }
         }
     }
-    ミニマップ画像.fillRect(11, 11, 3, 3, 2)
+    ミニマップ画像.fillRect(12, 10, 1, 5, 2)
+    ミニマップ画像.fillRect(10, 12, 5, 1, 2)
+    if (プレイヤー向き == "北") {
+        ミニマップ画像.fillRect(11, 11, 3, 1, 2)
+    } else if (プレイヤー向き == "東") {
+        ミニマップ画像.fillRect(13, 11, 1, 3, 2)
+    } else if (プレイヤー向き == "南") {
+        ミニマップ画像.fillRect(11, 13, 3, 1, 2)
+    } else if (プレイヤー向き == "西") {
+        ミニマップ画像.fillRect(11, 11, 1, 3, 2)
+    }
     ミニマップ画像.drawRect(0, 0, 25, 25, 9)
     ミニマップ = sprites.create(ミニマップ画像, SpriteKind.map)
     ミニマップ.setPosition(135, 20)
@@ -206,6 +216,8 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
 function 画面描画 () {
     壁クリア()
     壁描画()
+    ミニマップ初期化()
+    ミニマップ描画()
 }
 let ミニマップ: Sprite = null
 let 右壁0: Sprite = null
