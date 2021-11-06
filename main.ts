@@ -88,6 +88,12 @@ switch (プレイヤー向き) {
 }
 return m
 }
+function マップ (X座標: number, Y座標: number, 壁: string) {
+    if (マップデータ.getPixel(X座標, Y座標) == 14) {
+        return true
+    }
+    return false
+}
 function 壁クリア () {
     左壁3.destroy()
     左壁2.destroy()
@@ -164,37 +170,37 @@ function 壁初期化 () {
 }
 function 壁描画 () {
     n = 位置計算()
-    if (マップデータ.getPixel(n.L3.x, n.L3.y) == 14) {
+    if (マップ(n.L3.x, n.L3.y, "壁")) {
         左壁3 = sprites.create(assets.image`leftWall3`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.L2.x, n.L2.y) == 14) {
+    if (マップ(n.L2.x, n.L2.y, "壁")) {
         左壁2 = sprites.create(assets.image`baseWall0`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.L1.x, n.L1.y) == 14) {
+    if (マップ(n.L1.x, n.L1.y, "壁")) {
         左壁1 = sprites.create(assets.image`leftWall1`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.L0.x, n.L0.y) == 14) {
+    if (マップ(n.L0.x, n.L0.y, "壁")) {
         左壁0 = sprites.create(assets.image`leftWall0`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.R3.x, n.R3.y) == 14) {
+    if (マップ(n.R3.x, n.R3.y, "壁")) {
         右壁3 = sprites.create(assets.image`rightWall3`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.R2.x, n.R2.y) == 14) {
+    if (マップ(n.R2.x, n.R2.y, "壁")) {
         右壁2 = sprites.create(assets.image`rightWall2`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.R1.x, n.R1.y) == 14) {
+    if (マップ(n.R1.x, n.R1.y, "壁")) {
         右壁1 = sprites.create(assets.image`rightWall1`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.R0.x, n.R0.y) == 14) {
+    if (マップ(n.R0.x, n.R0.y, "壁")) {
         右壁0 = sprites.create(assets.image`rightWall0`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.C3.x, n.C3.y) == 14) {
+    if (マップ(n.C3.x, n.C3.y, "壁")) {
         中壁3 = sprites.create(assets.image`centerWall3`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.C2.x, n.C2.y) == 14) {
+    if (マップ(n.C2.x, n.C2.y, "壁")) {
         中壁2 = sprites.create(assets.image`centerWall2`, SpriteKind.wall_25d)
     }
-    if (マップデータ.getPixel(n.C1.x, n.C1.y) == 14) {
+    if (マップ(n.C1.x, n.C1.y, "壁")) {
         中壁1 = sprites.create(assets.image`centerWall1`, SpriteKind.wall_25d)
     }
 }
